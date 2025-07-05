@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Trigger orchestrator
         run: |
-          curl -X POST https://api.github.com/repos/YOUR-ORG/ci-orchestrator/dispatches \
+          curl -X POST https://api.github.com/repos/DanielRaphael1/ci-orchestrator/dispatches \
             -H "Authorization: token ${{ secrets.GH_DISPATCH_TOKEN }}" \
             -H "Accept: application/vnd.github.v3+json" \
             -d '{
