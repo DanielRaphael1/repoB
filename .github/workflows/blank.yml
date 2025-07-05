@@ -1,0 +1,20 @@
+name: Request CI Job
+
+on:
+  workflow_dispatch:
+
+jobs:
+  request-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger orchestrator
+        run: |
+          curl -X POST https://api.github.com/repos/YOUR-ORG/ci-orchestrator/dispatches \
+            -H "Authorization: token ${{ secrets.GH_DISPATCH_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            -d '{
+              "event_type": "enqueue-job",
+              "client_payload": {
+                "repo": "'"${{ github.repository }}"'"
+              }
+            }'
